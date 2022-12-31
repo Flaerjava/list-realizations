@@ -1,4 +1,4 @@
-import java.util.List;
+import java.util.*;
 
 
 /**
@@ -10,7 +10,7 @@ import java.util.List;
  *
  * @author Serhii Hryhus
  */
-public class ArrayList<T> {
+public class ArrayList<T> implements Iterable<T>{
 
     private Object [] elementsData;
 
@@ -224,5 +224,27 @@ public class ArrayList<T> {
             string += elem + " ";
         }
         return string;
+    }
+
+    public Iterator<T> iterator(){
+        return new Iter();
+    }
+
+
+    public class Iter implements Iterator<T>{
+
+        private int index = 0;
+
+        public T next(){
+        
+            return (T)elementsData[index++];
+        }
+
+        public boolean hasNext(){
+            return index < size;
+        }
+
+
+
     }
 }
